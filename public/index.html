@@ -13,6 +13,15 @@
   <!-- JavaScript 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>   troquei por 1.12.4 abaixo
   -->
+  <!-- Favicon --> 
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/images/icon/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/images/icon/manifest.json">
+  <link rel="mask-icon" href="/images/icon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/images/icon/favicon.ico">
+  <meta name="msapplication-config" content="/images/icon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
   <!-- Instalado pelo Bower  --save --> 
   <script src="vendor/jquery/dist/jquery.min.js"></script>
   <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>    
@@ -42,14 +51,14 @@
   <!-- Navigation Bar-->
   <div ng-controller="NavigationController">
     <nav class="navbar navbar-default" role="navigation">
-      <div class="navbar-header">
+      <div class="navbar-header"> <a href="#"><img src="images/logo.png" width="90" height="50"></a>
         <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Under Control </a>
+        <a class="navbar-brand"></a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
@@ -62,4 +71,5 @@
     <!-- Hook here the partials -->
     <div ui-view=""></div>
   </div>
+
 </body>
