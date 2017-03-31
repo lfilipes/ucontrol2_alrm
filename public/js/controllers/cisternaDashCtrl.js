@@ -10,11 +10,9 @@ function renderData(error,apiData) {
 }
 	  
 
-var firstD = new Date();
-
-
 	d3.select('#date_select2').on('change', function() {
-	   var now = new Date();
+	  var now = new Date();
+	  var lastQuarter = d3.time.month.offset(now, -3);
        var nd = new Date();
 	   switch (this.value) {
           case "week":
@@ -29,11 +27,11 @@ var firstD = new Date();
           break;
 		            case "all":
               {
-				nd = firstD;
+				nd = lastQuarter;  
 			   }
           break;
          default:
-               nd = firstD;
+               nd = lastQuarter;  
 
 	}
 	
@@ -95,6 +93,7 @@ function makeGraphs2(apiData,minDate,maxDate){
 	var reservatorioGroup = reservatorio.group();
 	
 	//Define o chart #1 de níveis sobrepostos 
+	var wLevel =  timeDim.group().reduceSum(function(d) { return d.total;} );
 	var status_tc = timeDim.group().reduceSum(function(d) { if (d.level1 == 1 && d.poleid == 1) {return 20;} else {return 10;}});
 	var status_tl = timeDim.group().reduceSum(function(d) { if (d.level2 == 1 && d.poleid == 1) {return 30;} else {return 0;}});
 	var status_tm = timeDim.group().reduceSum(function(d) { if (d.level3 == 1 && d.poleid == 1) {return 40;} else {return 0;}});
@@ -109,12 +108,14 @@ function makeGraphs2(apiData,minDate,maxDate){
 
 
 //Define threshold values for data	
-	firstD = timeDim.bottom(1)[0].datetime;
+	var firstD = timeDim.bottom(1)[0].datetime;
 	var lastD = timeDim.top(1)[0].datetime;
 	var minD, maxD = new Date();
 	if (minDate == undefined)  {minD = firstD;} else {minD = minDate;};
 	if (maxDate == undefined) {maxD = lastD;} else {maxD = maxDate;};
 
+	console.log("firstD:" + firstD);
+	console.log("lastD: " + lastD);	
 	console.log("minD:" + minD);
 	console.log("maxD: " + maxD);	
 
@@ -127,20 +128,22 @@ function makeGraphs2(apiData,minDate,maxDate){
 		.legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
         .on('renderlet',function (chart) {chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");} ) 
 		.dimension(timeDim)
-		.group(status_tc,"critical")
-		.stack(status_tl,"low")
-		.stack(status_tm,"medium")
-		.stack(status_tf,"full")
+		.group(wLevel, "Nível da Água")
+//		.group(status_tc,"critical")
+//		.stack(status_tl,"low")
+//		.stack(status_tm,"medium")
+//		.stack(status_tf,"full")
 		.renderArea(true)
 		.x(d3.time.scale().domain([minD, maxD]))
-		.elasticY(true)
-		.elasticX(true)
+		.y(d3.scale.linear().domain([0, 100]))
+		.elasticY(false)
+		.elasticX(false)
 		.renderHorizontalGridLines(true)
     	.renderVerticalGridLines(true)
+		.brushOn(true)
 		.xAxisLabel("Data")
-		.brushOn(false)
-		.yAxisLabel("Volume Cisterna") 
-		.ordinalColors(['#ff0000','#00bfff','#1e90ff','#0000ff','#747474','#910091','#a65628'])
+		.yAxisLabel("% Volume da Cisterna") 
+		.ordinalColors(['blue'])
 		.yAxis().ticks(10);
 
 
@@ -156,15 +159,19 @@ function makeGraphs2(apiData,minDate,maxDate){
    	  .x(d3.time.scale().domain([minD, maxD]))
 	  .transitionDuration(500)
       .centerBar(false)
-      .barPadding(10)
-      .xAxisLabel('Data')
+      .barPadding(2)
+	  .elasticY(false)
+	  .renderVerticalGridLines(false)
+	  .renderHorizontalGridLines(false)
+	  .elasticX(false)	  
 	  .brushOn(false)
+      .xAxisLabel('Data')
       .ordinalColors(['#f40000','#ffff30','#009100','#009191','#ff7f00','#ffff33','#a65628'])
-      .yAxisLabel('Count');
+      .yAxisLabel('Ocorrência')
+	  .yAxis().ticks(0);
 		
     dc.renderAll();
 	
    };	
    
 });
-

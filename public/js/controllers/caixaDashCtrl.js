@@ -10,10 +10,10 @@ function renderData1(error,apiData) {
 	makeGraphs1(sensorData);
 }
 
-var firstD = new Date();
 
 d3.select('#date_select').on('change', function() {
-	   var now = new Date();
+	  var now = new Date();
+	  var lastQuarter = d3.time.month.offset(now, -3);
        var nd = new Date();
 	   switch (this.value) {
           case "week":
@@ -28,16 +28,20 @@ d3.select('#date_select').on('change', function() {
           break;
 		            case "all":
               {
-				nd = firstD;
+				nd = lastQuarter;  
 			   }
           break;
          default:
-               nd = firstD;
+               nd = lastQuarter;  
+
 	}
+	
+	
 	var minDate = nd;
 	var maxDate = now;
-	console.log("minDate:" + minDate);
-	console.log("maxDate: " + maxDate);	
+//	console.log("minDate:" + minDate);
+//	console.log("maxDate: " + maxDate);	
+
     queue()
 	  .defer(d3.json, "/api/data")
 	  .await(rD);
@@ -89,6 +93,7 @@ function makeGraphs1(apiData,minDate,maxDate){
 	var reservatorioGroup = reservatorio.group();
 	
 	//Define o chart #1 de níveis sobrepostos 
+	var wLevel =  timeDim.group().reduceSum(function(d) { return d.total;} );
 	var status_tc = timeDim.group().reduceSum(function(d) { if (d.level1 == 1 && d.poleid == 2) {return 20;} else{return 10;};});
 	var status_tl = timeDim.group().reduceSum(function(d) { if (d.level2 == 1 && d.poleid == 2 ) {return 30;} else {return 0;};});
 	var status_tm = timeDim.group().reduceSum(function(d) { if (d.level3 == 1 && d.poleid == 2) {return 40;} else {return 0;};});
@@ -103,56 +108,65 @@ function makeGraphs1(apiData,minDate,maxDate){
 	);
 	
 //Define threshold values for data	
-	firstD = timeDim.bottom(1)[0].datetime;
+	var firstD = timeDim.bottom(1)[0].datetime;
 	var lastD = timeDim.top(1)[0].datetime;
 	var minD, maxD = new Date();
 	if (minDate == undefined)  {minD = firstD;} else {minD = minDate;};
 	if (maxDate == undefined) {maxD = lastD;} else {maxD = maxDate;};
 
+	console.log("firstD:" + firstD);
+	console.log("lastD: " + lastD);	
 	console.log("minD:" + minD);
 	console.log("maxD: " + maxD);	
 	
 	var dateChart = dc.lineChart("#date-chart");
 	dateChart
 		//		.width(600)
-		.height(220)
+		.height(260)
 		.margins({top: 80, right: 30, bottom: 50, left: 50})
 		.legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
-        .on('renderlet',function (chart) {chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");} ) 		
+        .on('renderlet',function (chart) {chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");} ) 
 		.dimension(timeDim)
-		.group(status_tc,"critical")
-		.stack(status_tl,"low")
-		.stack(status_tm,"medium")
-		.stack(status_tf,"full")
+		.group(wLevel, "Nível da Água")
+//		.group(status_tc,"critical")
+//		.stack(status_tl,"low")
+//		.stack(status_tm,"medium")
+//		.stack(status_tf,"full")
 		.renderArea(true)
-		.transitionDuration(500)
 		.x(d3.time.scale().domain([minD, maxD]))
-		.elasticY(true)
+		.y(d3.scale.linear().domain([0, 100]))
+		.elasticY(false)
+		.elasticX(false)
 		.renderHorizontalGridLines(true)
     	.renderVerticalGridLines(true)
+		.brushOn(true)
 		.xAxisLabel("Data")
-		.brushOn(false)
-		.yAxisLabel("Volume H2O")
-		.ordinalColors(['#ff0000','#00bfff','#1e90ff','#0000ff','#747474','#910091','#a65628'])		
+		.yAxisLabel("% Volume da Cisterna") 
+		.ordinalColors(['blue'])
 		.yAxis().ticks(10);
 
 	var criticalDaysChart = dc.barChart("#critical-days-chart");		
     criticalDaysChart
 //      .width(300)
       .height(220)
-      .margins({top: 30, right: 30, bottom: 50, left: 50})
+	  .margins({top: 30, right: 30, bottom: 50, left: 50})
 	  .legend(dc.legend().x(60).y(10).itemHeight(13).gap(5))
-      .on('renderlet',function (chart) {chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");} )  	  
-	  .dimension(timeDim)
+      .on('renderlet',function (chart) {chart.selectAll("g.x text").attr('dx', '-30').attr('dy', '-7').attr('transform', "rotate(-90)");} ) 	  
+      .dimension(timeDim)
       .group(countCriticalDays,"Reserva Crítica")
    	  .x(d3.time.scale().domain([minD, maxD]))
 	  .transitionDuration(500)
       .centerBar(false)
-      .barPadding(10)
-      .xAxisLabel('Data')
+      .barPadding(2)
+	  .elasticY(false)
+	  .renderVerticalGridLines(false)
+	  .renderHorizontalGridLines(false)
+	  .elasticX(false)	  
 	  .brushOn(false)
-	  .ordinalColors(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628'])
-      .yAxisLabel('Critical Events');
+      .xAxisLabel('Data')
+      .ordinalColors(['#f40000','#ffff30','#009100','#009191','#ff7f00','#ffff33','#a65628'])
+      .yAxisLabel('Ocorrência')
+	  .yAxis().ticks(0);
 		
     dc.renderAll();
 	
