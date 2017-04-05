@@ -18,21 +18,11 @@ angular.module('App', ['ngResource','ui.bootstrap', 'ui.router', 'ui.navbar','ng
       templateUrl: "partials/cisternaDash.html",
 	  controller: 'cisternaDashCtrl'
     })
-    .state('caixaDash', {
-      url: "/caixaDash",
-      templateUrl: "partials/caixaDash.html",
-	  controller: 'caixaDashCtrl'
-    })
 	.state('relatorio', {
       url: "/relatorio",
       templateUrl: "partials/relMensal2.html",
 	  controller: 'tableJsonCtrl3'
     })
-		.state('espGourmet', {
-      url: "/espGourmet",
-      templateUrl: "partials/RadialGaugeDemo.html",
-	  controller: 'RadialGaugeDemoCtrl'
-    });
 })
 
 .controller('NavigationController', function($scope) {
@@ -40,31 +30,21 @@ angular.module('App', ['ngResource','ui.bootstrap', 'ui.router', 'ui.navbar','ng
   $scope.allMenuItens = [
     
   {
-    name: "Nivel Reservatório",
+    name: "Historico",
     link: "#",
     subtree: [{
-      name: "Cisterna",
+      name: "Cisterna - Bloco 10",
       link: "cisternaDash"
-    }, {
-      name: "Caixa d'Agua",
-      link: "caixaDash"
-    }]
+    }, 
+    ]
   }, 
 
  {
     name: "Relatório",
     link: "#",
     subtree: [{
-      name: "Relatório",
+      name: "Cisterna - Bloco 10",
       link: "relatorio"
-    }]
-  },
-   {
-    name: "Espaço Gourmet",
-    link: "#",
-    subtree: [{
-      name: "Espaço Gourmet",
-      link: "espGourmet"
     }]
   },
   

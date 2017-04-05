@@ -4,7 +4,7 @@
 				<div class="container"> 
 
 					<div id="logo">
-						<h1>Bem Vindo ao Pátio Village</a></h1>
+						<h1>Residencial Life</a></h1>
 					</div>
 					
 				</div>
@@ -14,16 +14,12 @@
 
 					<div class="row">
 						<div class="6u chart-wrapper"  id="liquidGauge1">
-							<div class="chart-title bold"> <strong> Cisterna    -    Clique na Figura para Ver o Dashboard</strong></div>
+							<div class="chart-title bold"> <strong> Cisterna do Bloco 10 - Última Leitura</strong></div>
 							<svg id="fillgauge1" width="95%" height="250" onclick="window.location.href='#/cisternaDash'"></svg>
 							
 							
 						</div>
-						<div class="6u chart-wrapper"  id="liquidGaugue2">
-							<div class="chart-title bold"> <strong> Caixa d´Água    -    Clique na Figura para Ver o Dashboard </strong></div>
-							<svg id="fillgauge2" width="95%" height="250" onclick="window.location.href='#/caixaDash'"></svg>
-						</div>
-					</div>
+						
 				
 		</div>	
 	</div>
@@ -87,18 +83,6 @@ function renderT() {
             }
             i = i + 1;
          }
-		var j = 0;
-		while (j < tdlen)
-         {
-            if ( timeDim.top(tdlen)[j].poleid == 2){
-			   var lastVolume2 = timeDim.top(tdlen)[j].total;	
-			    console.log("LastVolume2 is:" + lastVolume2);
-				console.log("LastTime2 is: " + timeDim.top(tdlen)[j].datetime);	
-				console.log("LastPole2 is: " + timeDim.top(tdlen)[j].poleid);	
-               break; // breaks out of loop completely
-            }
-            j = j + 1;
-         }
 
 // Configura gaugue
     var config1 = liquidFillGaugeDefaultSettings();
@@ -113,7 +97,6 @@ function renderT() {
     config1.waveHeight = 0.15;
 
 	 var gauge1 = loadLiquidFillGauge("fillgauge1", lastVolume1, config1);
-	 var gauge2 = loadLiquidFillGauge("fillgauge2", lastVolume2, config1);
 	
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
