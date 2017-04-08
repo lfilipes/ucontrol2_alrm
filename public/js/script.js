@@ -16,13 +16,23 @@ angular.module('App', ['ngResource','ui.bootstrap', 'ui.router', 'ui.navbar','ng
     .state('cisternaDash', {
       url: "/cisternaDash",
       templateUrl: "partials/cisternaDash.html",
-	  controller: 'cisternaDashCtrl'
+    controller: 'cisternaDashCtrl'
     })
-	.state('relatorio', {
+    .state('caixaDash', {
+      url: "/caixaDash",
+      templateUrl: "partials/caixaDash.html",
+    controller: 'caixaDashCtrl'
+    })
+  .state('relatorio', {
       url: "/relatorio",
       templateUrl: "partials/relMensal2.html",
-	  controller: 'tableJsonCtrl3'
+    controller: 'tableJsonCtrl3'
     })
+    .state('espGourmet', {
+      url: "/espGourmet",
+      templateUrl: "partials/RadialGaugeDemo.html",
+    controller: 'RadialGaugeDemoCtrl'
+    });
 })
 
 .controller('NavigationController', function($scope) {
@@ -30,21 +40,31 @@ angular.module('App', ['ngResource','ui.bootstrap', 'ui.router', 'ui.navbar','ng
   $scope.allMenuItens = [
     
   {
-    name: "Historico",
+    name: "Nivel Reservatório",
     link: "#",
     subtree: [{
-      name: "Cisterna - Bloco 10",
+      name: "Cisterna",
       link: "cisternaDash"
-    }, 
-    ]
+    }, {
+      name: "Caixa d'Agua",
+      link: "caixaDash"
+    }]
   }, 
 
  {
     name: "Relatório",
     link: "#",
     subtree: [{
-      name: "Cisterna - Bloco 10",
+      name: "Relatório",
       link: "relatorio"
+    }]
+  },
+   {
+    name: "Espaço Gourmet",
+    link: "#",
+    subtree: [{
+      name: "Espaço Gourmet",
+      link: "espGourmet"
     }]
   },
   
