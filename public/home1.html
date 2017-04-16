@@ -14,13 +14,13 @@
 
                     <div class="row">
                         <div class="6u chart-wrapper"  id="liquidGauge1">
-                            <div class="chart-title bold"> <strong> Cisterna - Clique na Figura para Ver o Dashboard</strong></div>
+                            <div class="chart-title bold"> <strong> Cisterna    -    Clique na Figura para Ver o Dashboard</strong></div>
                             <svg id="fillgauge1" width="95%" height="250" onclick="window.location.href='#/cisternaDash'"></svg>
                             
                             
                         </div>
                         <div class="6u chart-wrapper"  id="liquidGaugue2">
-                            <div class="chart-title bold"> <strong> Em instalação - Caixa d´Água  </strong></div>
+                            <div class="chart-title bold"> <strong> Caixa d´Água    -    Clique na Figura para Ver o Dashboard </strong></div>
                             <svg id="fillgauge2" width="95%" height="250" onclick="window.location.href='#/caixaDash'"></svg>
                         </div>
                     </div>
@@ -34,12 +34,12 @@
 <script language="JavaScript">
   
 queue()
-   .defer(d3.json, "/api/data/1/latest")
+   .defer(d3.json, "/api/data")
    .await(displayTotals);
    
 var ci3Min = setInterval(renderT, 180000);
 function renderT() {
-   queue().defer(d3.json, "/api/data/1/latest").await(displayTotals);
+   queue().defer(d3.json, "/api/data").await(displayTotals);
 }	
 
    function displayTotals(error, apiData){
@@ -51,19 +51,19 @@ function renderT() {
 		d.datetime = dateFormat.parse(d.datetime);
 //		console.log(d.datetime);
 		if (d.level4 == 1) {
-			d.total = 120;
+			d.total = 100;
 			} 
 		else if (d.level3 == 1) {
-			d.total = 110;
-			}
-		else if (d.level2 == 1) {
 			d.total = 100;
 			}
-		else if (d.level1 == 1) {
+		else if (d.level2 == 1) {
 			d.total = 50;
+			}
+		else if (d.level1 == 1) {
+			d.total = 20;
 			}	
 		 else {
-			d.total = 5;
+			d.total = 0;
 		   }	
 	});
  
@@ -117,7 +117,7 @@ function renderT() {
     config1.waveHeight = 0.15;
 
 	 var gauge1 = loadLiquidFillGauge("fillgauge1", lastVolume1, config1);
-     //var gauge2 = loadLiquidFillGauge("fillgauge2", lastVolume2, config1);
+     var gauge2 = loadLiquidFillGauge("fillgauge2", lastVolume2, config1);
 	
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
