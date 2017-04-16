@@ -64,19 +64,19 @@ function makeGraphs2(apiData,minDate,maxDate){
 		d.datetime = dateFormat.parse(d.datetime);
 		d.month = monthFormat(d.datetime);
 		if (d.level4 == 1) {
-			d.total = 100;
+			d.total = 120;
 			} 
 		else if (d.level3 == 1) {
-			d.total = 90;
+			d.total = 110;
 			}
 		else if (d.level2 == 1) {
-			d.total = 50;
+			d.total = 100;
 			}
 		else if (d.level1 == 1) {
-			d.total = 20;
+			d.total = 50;
 			}	
 		 else {
-			d.total = 10;
+			d.total = 5;
 		}	
 	});
 
