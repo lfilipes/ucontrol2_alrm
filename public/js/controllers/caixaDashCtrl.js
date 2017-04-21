@@ -1,7 +1,7 @@
 angular.module('App').controller('caixaDashCtrl', function($scope,$resource){
    
    queue()
-      .defer(d3.json, "/api/data")
+      .defer(d3.json, "/api/data/1/UCSReserv1")
       .await(renderData1);
 	  
 	  
@@ -43,7 +43,7 @@ d3.select('#date_select').on('change', function() {
 //	console.log("maxDate: " + maxDate);	
 
     queue()
-	  .defer(d3.json, "/api/data")
+	  .defer(d3.json, "/api/data/1/UCSReserv1")
 	  .await(rD);
 	  
     function rD(error,apiData) {
@@ -85,7 +85,7 @@ function makeGraphs1(apiData,minDate,maxDate){
 	var ndx = crossfilter(dataSet);
 	
     // Cria as dimensões
-    var reservatorio = ndx.dimension(function(d) { return d.poleid; });	
+    var reservatorio = ndx.dimension(function(d) { return d.sensorid; });	
 	reservatorio.filter(2);
 	
 	var timeDim = ndx.dimension(function(d) {return new Date(d.datetime).getTime() });
@@ -94,10 +94,10 @@ function makeGraphs1(apiData,minDate,maxDate){
 	
 	//Define o chart #1 de níveis sobrepostos 
 	var wLevel =  timeDim.group().reduceSum(function(d) { return d.total;} );
-	var status_tc = timeDim.group().reduceSum(function(d) { if (d.level1 == 1 && d.poleid == 2) {return 20;} else{return 10;};});
-	var status_tl = timeDim.group().reduceSum(function(d) { if (d.level2 == 1 && d.poleid == 2 ) {return 30;} else {return 0;};});
-	var status_tm = timeDim.group().reduceSum(function(d) { if (d.level3 == 1 && d.poleid == 2) {return 40;} else {return 0;};});
-	var status_tf = timeDim.group().reduceSum(function(d) { if (d.level4 == 1 && d.poleid == 2) {return 10;} else {return 0;};});	
+	var status_tc = timeDim.group().reduceSum(function(d) { if (d.level1 == 1) {return 20;} else{return 10;};});
+	var status_tl = timeDim.group().reduceSum(function(d) { if (d.level2 == 1) {return 30;} else {return 0;};});
+	var status_tm = timeDim.group().reduceSum(function(d) { if (d.level3 == 1) {return 40;} else {return 0;};});
+	var status_tf = timeDim.group().reduceSum(function(d) { if (d.level4 == 1) {return 10;} else {return 0;};});	
 	
 	
 	//Define o bar chart de dias críticos

@@ -90,7 +90,7 @@ app.get('/api/data/1/latest', function(req, res, next) {
         });
     })
 app.get('/api/data/1/UCSCistern1', function(req, res, next) {
-        mongoose.model('Ws').findOne({"sensorid": "UCSCistern1"}, {}, { sort: { "datetime": -1} }, function (err, ws) {
+        mongoose.model('Ws').find({"sensorid": "UCSCistern1"}, {}, { sort: { "datetime": -1} }, function (err, ws) {
               if (err) {
                   return console.error(err);
               } else {
@@ -103,7 +103,7 @@ app.get('/api/data/1/UCSCistern1', function(req, res, next) {
         });
     })
 app.get('/api/data/1/UCSReserv1', function(req, res, next) {
-        mongoose.model('Ws').findOne({"sensorid": "UCSReserv1"}, {}, { sort: { "datetime": -1} }, function (err, ws) {
+        mongoose.model('Ws').find({"sensorid": "UCSReserv1"}, {}, { sort: { "datetime": -1} }, function (err, ws) {
               if (err) {
                   return console.error(err);
               } else {

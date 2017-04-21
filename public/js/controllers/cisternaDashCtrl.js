@@ -1,7 +1,7 @@
 angular.module('App').controller('cisternaDashCtrl', function($scope,$resource){
    
    queue()
-	  .defer(d3.json, "/api/data")
+	  .defer(d3.json, "/api/data/1/UCSCistern1")
 	  .await(renderData);
 	  
 function renderData(error,apiData) {
@@ -38,7 +38,7 @@ function renderData(error,apiData) {
 	var minDate = nd;
 	var maxDate = now;
     queue()
-	  .defer(d3.json, "/api/data")
+	  .defer(d3.json, "/api/data/1/UCSCistern1")
 	  .await(rD);
 	  
     function rD(error,apiData) {
