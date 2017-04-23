@@ -15,16 +15,17 @@
                     <div class="row">
                         <div class="6u chart-wrapper"  id="liquidGauge1">
                             <div class="chart-title bold"> <strong> Cisterna - Clique na Figura para Ver o Dashboard</strong></div>
-                            <svg id="fillgauge1" width="95%" height="250" onclick="window.location.href='#/cisternaDash'"></svg>
+                            <svg id="fillgauge1" width="75%" height="200" onclick="window.location.href='#/cisternaDash'"></svg>
                             
                             
                         </div>
                         <div class="6u chart-wrapper"  id="liquidGaugue2">
                             <div class="chart-title bold"> <strong>Bloco 5 Lado 2 - Caixa D'água  </strong></div>
-                            <svg id="fillgauge2" width="95%" height="250" onclick="window.location.href='#/caixaDash'"></svg>
+                            <svg id="fillgauge2" width="75%" height="200" onclick="window.location.href='#/caixaDash'"></svg>
                         </div>
                     </div>
-                <p align="right">Legenda:<br>100% - Cheio<br>
+                <p align="right">Legenda:<br>110% - Vazamento<br>
+                100% - Cheio<br>
                 50% - Medio<br>
                 0% - Vazio</p>
         </div>  
@@ -52,18 +53,23 @@ function renderT() {
 //		console.log(d.datetime);
 		if (d.level4 == 1) {
 			d.total = 120;
+            d.changecolor = "#333232"
 			} 
 		else if (d.level3 == 1) {
 			d.total = 110;
+            d.changecolor = "#333232"
 			}
 		else if (d.level2 == 1) {
 			d.total = 100;
+            d.changecolor = "#178BCA"
 			}
 		else if (d.level1 == 1) {
 			d.total = 50;
+            d.changecolor = "#FBE562"
 			}	
 		 else {
-			d.total = 5;
+			d.total = 0;
+            d.changecolor = "E53A0F"
 		   }	
 	});
  
@@ -81,10 +87,12 @@ function renderT() {
 		while (i < tdlen)
          {
             if ( timeDim.top(tdlen)[i].sensorid == "UCSCistern1"){
-			   var lastVolume1 = timeDim.top(tdlen)[i].total;	
+			   var lastVolume1 = timeDim.top(tdlen)[i].total;
+               var changecolor1 = timeDim.top(tdlen)[i].changecolor	
 			   	console.log("LastVolume1 is:" + lastVolume1);
 				console.log("LastTime1 is: " + timeDim.top(tdlen)[i].datetime);	
-				console.log("LastPole1 is: " + timeDim.top(tdlen)[i].poleid);	
+				console.log("LastPole1 is: " + timeDim.top(tdlen)[i].poleid);
+                console.log("Color1 is: " + timeDim.top(tdlen)[i].changecolor);  	
 			   break; // breaks out of loop completely
             }
             i = i + 1;
@@ -93,10 +101,12 @@ function renderT() {
         while (j < tdlen)
          {
             if ( timeDim.top(tdlen)[j].sensorid == "UCSReserv1"){
-               var lastVolume2 = timeDim.top(tdlen)[j].total;   
+               var lastVolume2 = timeDim.top(tdlen)[j].total;
+               var changecolor2 = timeDim.top(tdlen)[j].changecolor   
                 console.log("LastVolume2 is:" + lastVolume2);
                 console.log("LastTime2 is: " + timeDim.top(tdlen)[j].datetime); 
-                console.log("LastPole2 is: " + timeDim.top(tdlen)[j].poleid);   
+                console.log("LastPole2 is: " + timeDim.top(tdlen)[j].poleid);
+                console.log("Color2 is: " + timeDim.top(tdlen)[j].changecolor);   
                break; // breaks out of loop completely
             }
             j = j + 1;
@@ -112,14 +122,14 @@ function renderT() {
 	config1.waveCount = 2;
     config1.waveOffset = 0.25;
     config1.textSize = 1.2;
-    config1.minValue = 1;
+    config1.minValue = 10;
     config1.maxValue = 100;
     config1.waveHeight = 0.15;
 
 
 
-	 var gauge1 = loadLiquidFillGauge("fillgauge1", lastVolume1, config1);
-     var gauge2 = loadLiquidFillGauge("fillgauge2", lastVolume2, config1);
+	 var gauge1 = loadLiquidFillGauge("fillgauge1", lastVolume1, config1, changecolor1);
+     var gauge2 = loadLiquidFillGauge("fillgauge2", lastVolume2, config1, changecolor2);
 	
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -149,7 +159,7 @@ function liquidFillGaugeDefaultSettings(){
     };
 }
 
-function loadLiquidFillGauge(elementId, value, config) {
+function loadLiquidFillGauge(elementId, value, config, updatecolor) {
     if(config == null) config = liquidFillGaugeDefaultSettings();
 
     var gauge = d3.select("#" + elementId);
@@ -234,7 +244,7 @@ function loadLiquidFillGauge(elementId, value, config) {
         .innerRadius(gaugeCircleY(radius-circleThickness));
     gaugeGroup.append("path")
         .attr("d", gaugeCircleArc)
-        .style("fill", config.circleColor)
+        .style("fill", updatecolor)
         .attr('transform','translate('+radius+','+radius+')');
 
     // Text where the wave does not overlap.
@@ -266,7 +276,7 @@ function loadLiquidFillGauge(elementId, value, config) {
         .attr("cx", radius)
         .attr("cy", radius)
         .attr("r", fillCircleRadius)
-        .style("fill", config.waveColor);
+        .style("fill", updatecolor);
 
     // Text where the wave does overlap.
     var text2 = fillCircleGroup.append("text")
