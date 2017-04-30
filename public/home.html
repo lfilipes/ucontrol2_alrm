@@ -13,16 +13,38 @@
          <div class="container">
 
                     <div class="row">
-                        <div class="6u chart-wrapper"  id="liquidGauge1">
-                            <div class="chart-title bold"> <strong> Cisterna - Clique na Figura para Ver o Dashboard</strong></div>
+                    <div class="newcontainer">
+                    <div class="cisterna">
+                        <div class="6u chart-wrapper">
+                            <div class="chart-title bold"> <strong> Cisterna </strong></div>
                             <svg id="fillgauge1" width="75%" height="200" onclick="window.location.href='#/cisternaDash'"></svg>
                             
-                            
                         </div>
-                        <div class="6u chart-wrapper"  id="liquidGaugue2">
-                            <div class="chart-title bold"> <strong>Bloco 5 Lado 2 - Caixa D'água  </strong></div>
-                            <svg id="fillgauge2" width="75%" height="200" onclick="window.location.href='#/caixaDash'"></svg>
                         </div>
+                        </div>
+                       <div class="newcontainer">
+                       <div class="sideleft">
+                        <div class="chart-wrapper">
+                            <div class="chart-title bold" style="background: gray" > <strong> Bloco2 Em Instalação</strong> </div>
+                            <svg id="fillgauge3" width="75%" height="200" onclick="window.location.href='#/caixaDash2A'"></svg>
+                        </div>
+                        </div>
+                        <div class="sideleft">
+                        <div class="6u chart-wrapper">
+                            <div class="chart-title bold"> <strong>Bloco 3  </strong></div>
+                            <svg id="fillgauge4" width="75%" height="200" onclick="window.location.href='#/caixaDash3A'"></svg>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="newcontainer">
+                        <div class="cisterna">
+                         <div class="6u chart-wrapper">
+                            <div class="chart-title bold"> <strong>Bloco 5A  </strong></div>
+                            <svg id="fillgauge2" width="75%" height="200" onclick="window.location.href='#/caixaDash5A'"></svg>
+                        </div>
+                        </div>
+                        </div>
+                         
                     </div>
                 <p align="right">Legenda:<br>110% - Vazamento<br>
                 100% - Cheio<br>
@@ -65,11 +87,11 @@ function renderT() {
 			}
 		else if (d.level1 == 1) {
 			d.total = 50;
-            d.changecolor = "#FBE562"
+            d.changecolor = "#DBDB1C"
 			}	
 		 else {
 			d.total = 0;
-            d.changecolor = "E53A0F"
+            d.changecolor = "#E53A0F"
 		   }	
 	});
  
@@ -97,10 +119,12 @@ function renderT() {
             }
             i = i + 1;
          }
+
+         //bloco 5 caixa d'agua 
          var j = 0;
         while (j < tdlen)
          {
-            if ( timeDim.top(tdlen)[j].sensorid == "UCSReserv1"){
+            if ( timeDim.top(tdlen)[j].sensorid == "UCSReserv1" && timeDim.top(tdlen)[j].blocoid == 5){
                var lastVolume2 = timeDim.top(tdlen)[j].total;
                var changecolor2 = timeDim.top(tdlen)[j].changecolor   
                 console.log("LastVolume2 is:" + lastVolume2);
@@ -110,6 +134,29 @@ function renderT() {
                break; // breaks out of loop completely
             }
             j = j + 1;
+         }
+
+         //bloco 2 caixa d'agua 
+         var k = 0;
+        while (k < tdlen)
+         {
+            if ( timeDim.top(tdlen)[k].sensorid == "UCSReserv1" && timeDim.top(tdlen)[k].blocoid == 2){
+               var lastVolume3 = timeDim.top(tdlen)[k].total;
+               var changecolor3 = timeDim.top(tdlen)[k].changecolor     
+               break; // breaks out of loop completely
+            }
+            k = k + 1;
+         }
+         //bloco 3 caixa d'agua 
+           var l = 0;
+        while (l < tdlen)
+         {
+            if ( timeDim.top(tdlen)[l].sensorid == "UCSReserv1" && timeDim.top(tdlen)[l].blocoid == 3){
+               var lastVolume4 = timeDim.top(tdlen)[l].total;
+               var changecolor4 = timeDim.top(tdlen)[l].changecolor     
+               break; // breaks out of loop completely
+            }
+            l = l + 1;
          }
 
 
@@ -128,8 +175,12 @@ function renderT() {
 
 
 
-	 var gauge1 = loadLiquidFillGauge("fillgauge1", lastVolume1, config1, changecolor1);
-     var gauge2 = loadLiquidFillGauge("fillgauge2", lastVolume2, config1, changecolor2);
+	 var gauge1 = loadLiquidFillGauge("fillgauge1", lastVolume1, config1, changecolor1); //cisterna
+     var gauge2 = loadLiquidFillGauge("fillgauge2", lastVolume2, config1, changecolor2); //bloco 5
+     var gauge3 = loadLiquidFillGauge("fillgauge3", 0, config1, "#E53A0F"); // caixa d água bloco 2
+     //var gauge3 = loadLiquidFillGauge("fillgauge3", lastVolume3, config1, changecolor3); // caixa d água bloco 2
+     //var gauge4 = loadLiquidFillGauge("fillgauge4", 0, config1, "#E53A0F"); // caixa d agua bloco 3
+     var gauge4 = loadLiquidFillGauge("fillgauge4", lastVolume4, config1, changecolor4); // caixa d agua bloco 3
 	
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	

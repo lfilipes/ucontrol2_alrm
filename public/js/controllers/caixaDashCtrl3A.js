@@ -1,7 +1,7 @@
-angular.module('App').controller('caixaDashCtrl', function($scope,$resource){
+angular.module('App').controller('caixaDashCtrl3A', function($scope,$resource){
    
    queue()
-      .defer(d3.json, "/api/data/1/UCSReserv1")
+      .defer(d3.json, "/api/data/1/UCSReserv1/bl3")
       .await(renderData1);
 	  
 	  
@@ -43,7 +43,7 @@ d3.select('#date_select').on('change', function() {
 //	console.log("maxDate: " + maxDate);	
 
     queue()
-	  .defer(d3.json, "/api/data/1/UCSReserv1")
+	  .defer(d3.json, "/api/data/1/UCSReserv1/bl3")
 	  .await(rD);
 	  
     function rD(error,apiData) {

@@ -19,7 +19,7 @@ app.get('/api/data', function(req, res, next) {
               }     
         });
     })
-	
+
 app.post('/api/data', function (req, res, next) {
 		var sD= new sensorData();
 		sD.datetime = req.body.datetime;
@@ -128,4 +128,33 @@ app.get('/api/data/1/UCSReserv1/bl5', function(req, res, next) {
               }     
         });
     })
+
+app.get('/api/data/1/UCSReserv1/bl2', function(req, res, next) {
+        mongoose.model('Ws').find({"sensorid": "UCSReserv1", "blocoid": "2"}, {}, { sort: { "datetime": -1} }, function (err, ws) {
+              if (err) {
+                  return console.error(err);
+              } else {
+                  res.format({
+                    json: function(){
+                        res.json(ws);
+                    }
+                });
+              }     
+        });
+      })
+
+app.get('/api/data/1/UCSReserv1/bl3', function(req, res, next) {
+        mongoose.model('Ws').find({"sensorid": "UCSReserv1", "blocoid": "3"}, {}, { sort: { "datetime": -1} }, function (err, ws) {
+              if (err) {
+                  return console.error(err);
+              } else {
+                  res.format({
+                    json: function(){
+                        res.json(ws);
+                    }
+                });
+              }     
+        });
+  })
 }
+

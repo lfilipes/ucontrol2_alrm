@@ -37,6 +37,7 @@
   font-size: 14px;
   font-weight: 200;
   padding: 7px 10px 4px;
+  text-align: center;
 }
 
 .chart-wrapper .chart-stage {
@@ -176,7 +177,15 @@ transform: translateX(-50%);
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
-
+.newcontainer {
+    display:flex;
+}
+.sideleft {
+    width: 50%
+}
+.cisterna {
+    width: 100%
+}
 h3 {
     margin: 0 0 10px 0;
     color: #616161;

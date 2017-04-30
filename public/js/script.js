@@ -18,10 +18,20 @@ angular.module('App', ['ngResource','ui.bootstrap', 'ui.router', 'ui.navbar','ng
       templateUrl: "partials/cisternaDash.html",
     controller: 'cisternaDashCtrl'
     })
-    .state('caixaDash', {
-      url: "/caixaDash",
-      templateUrl: "partials/caixaDash.html",
-    controller: 'caixaDashCtrl'
+    .state('caixaDash2A', {
+      url: "/caixaDash2A",
+      templateUrl: "partials/caixaDash2A.html",
+    controller: 'caixaDashCtrl2A'
+    })
+    .state('caixaDash3A', {
+      url: "/caixaDash3A",
+      templateUrl: "partials/caixaDash3A.html",
+    controller: 'caixaDashCtrl3A'
+    })
+    .state('caixaDash5A', {
+      url: "/caixaDash5A",
+      templateUrl: "partials/caixaDash5A.html",
+    controller: 'caixaDashCtrl5A'
     })
   .state('relatorio', {
       url: "/relatorio",
@@ -32,6 +42,16 @@ angular.module('App', ['ngResource','ui.bootstrap', 'ui.router', 'ui.navbar','ng
       url: "/relbl5",
       templateUrl: "partials/relbl5.html",
     controller: 'bl5Ctrl'
+    })
+  .state('relbl2', {
+      url: "/relbl2",
+      templateUrl: "partials/relbl2.html",
+    controller: 'bl2Ctrl'
+    })
+   .state('relbl3', {
+      url: "/relbl3",
+      templateUrl: "partials/relbl3.html",
+    controller: 'bl3Ctrl'
     })
   .state('relcistenas', {
       url: "/relcistenas",
@@ -56,24 +76,38 @@ angular.module('App', ['ngResource','ui.bootstrap', 'ui.router', 'ui.navbar','ng
       name: "Cisterna",
       link: "cisternaDash"
     }, {
-      name: "Caixa d'Agua",
-      link: "caixaDash"
-    }]
+      name: "Caixa d'Agua Bloco 2",
+      link: "caixaDash2A"
+    }, {
+      name: "Caixa d'Agua Bloco 3",
+      link: "caixaDash3A"
+    }, {
+      name: "Caixa d'Agua Bloco 5",
+      link: "caixaDash5A"
+    }
+    ]
   }, 
 
  {
     name: "Relatório",
     link: "#",
     subtree: [{
-      name: "Bloco 5",
-      link: "relbl5"
-    }, {
       name: "Cisternas",
       link: "relcistenas"
     }, {
+      name: "Bloco 2",
+      link: "relbl2"
+    }, {
+      name: "Bloco 3",
+      link: "relbl3"
+    }, {
+      name: "Bloco 5",
+      link: "relbl5"
+    }, {
       name: "Geral",
       link: "relatorio"
-    }]
+    }
+    ]
   },
    {
     name: "Espaço Gourmet",
