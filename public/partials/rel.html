@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-xs-6"><h4>Relatorio Geral</h4><br>
+		<div class="col-xs-6"><h4>Relatorio Completo</h4><br>
            <strong> Exportar para Excel </strong><button ng-click="exportData()">Exportar</button>
 		  </div>
             <br>
@@ -21,8 +21,6 @@
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Pole</th>
-                <th>ID do Reservatório</th>
                 <th>Bloco</th>
                 <th>Nível</th>
                 <th>Temperatura</th>
@@ -32,8 +30,6 @@
         <tbody>
            <tr ng-repeat="item in items | orderBy: 'datetime':true | limitTo: lmt">
                 <td>{{item.datetime}}</td>
-                <td>{{item.poleid}}</td>
-                <td>{{item.sensorid}}</td>
                 <td>{{item.blocoid}}
                 <td ng-if = "item.level4 =='1' && item.level3 =='1' && item.level2 =='1' && item.level1 =='1'"><font color="red"><strong>Risco de Vazamento - Nível 4</strong></font></td>
                 <td ng-if = "item.level4 =='0' && item.level3 =='1' && item.level2 =='1' && item.level1 =='1'"><font color="red"><strong>Risco de Vazamento - Nível 3</strong></font></td>
