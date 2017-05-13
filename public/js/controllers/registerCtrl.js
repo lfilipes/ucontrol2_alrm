@@ -8,6 +8,9 @@
     function Controller($location, $localStorage, AuthenticationService) {
         var vm = this;
  
+ 
+        vm.register=register;
+		
 		/*if ($localStorage.currentUser.email == 'admin@ucontrol.net.br' ) {
 			vm.register = register;
 		} else
