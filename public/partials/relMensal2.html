@@ -2,10 +2,10 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-xs-6"><h4>Relatorio Geral</h4><br>
-           <strong> Exportar para Excel </strong><button ng-click="exportData()">Exportar</button>
+		<div class="col-xs-6"> 
+           <button ng-click="exportData()">Export</button>
 		  </div>
-            <br>
+ 
 		<div class="col-xs-6">  <strong> Selecione a quantidade de Registros </strong> 
 				<select ng-model="lmt">
 					<option>20</option>
@@ -15,7 +15,7 @@
 		</div>	
 	</div>
 </div>
-<br>
+
     <div id="exportable">
 	<table class="table table-bordered table-striped" id="data-table">
         <thead>
@@ -35,11 +35,11 @@
                 <td>{{item.poleid}}</td>
                 <td>{{item.sensorid}}</td>
                 <td>{{item.blocoid}}
-                <td ng-if = "item.level4 =='1' && item.level3 =='1' && item.level2 =='1' && item.level1 =='1'"><font color="red"><strong>Risco de Vazamento - Nível 4</strong></font></td>
-                <td ng-if = "item.level4 =='0' && item.level3 =='1' && item.level2 =='1' && item.level1 =='1'"><font color="red"><strong>Risco de Vazamento - Nível 3</strong></font></td>
-                <td ng-if = "item.level4 =='0' && item.level3 =='0' && item.level2 =='1' && item.level1 == '1'"><font color="green"><b>Cheio - Nível 2</b></font></td>
-                <td ng-if = "item.level4 =='0' && item.level3 =='0' && item.level2 =='0' && item.level1 =='1'"><font color="#D2CA0D"><strong>Médio - Nível 1</strong></td>
-                <td ng-if = "item.level4 =='0' && item.level3 =='0' && item.level2 =='0' && item.level1 =='0'"><font color="red"><strong> <b>Crítico - Nível 0</b></strong></td>
+                <td ng-if = "item.level4 =='1' && item.level3 =='1' && item.level2 =='1' && item.level1 =='1'"><font color="green">Cheio - Nível 4</font></td>
+                <td ng-if = "item.level4 =='0' && item.level3 =='1' && item.level2 =='1' && item.level1 =='1'"><font color="green">Cheio - Nível 3</font></td>
+                <td ng-if = "item.level4 =='0' && item.level3 =='0' && item.level2 =='1' && item.level1 == '1'"><b>Médio - Nível 2</b></td>
+                <td ng-if = "item.level4 =='0' && item.level3 =='0' && item.level2 =='0' && item.level1 =='1'"><font color="red">Baixo - Nível 1</td>
+                <td ng-if = "item.level4 =='0' && item.level3 =='0' && item.level2 =='0' && item.level1 =='0'"><font color="red"><strong> <b>Crítico</b></strong></td>
                 <td ng-if = "item.level4 =='1' && item.level1 =='0' && item.level2 =='1' && item.level1 =='0'"><font color="red">Erro de Leitura no Sensor</td>
                 <td ng-if = "item.level4 =='1' && item.level3 =='1' && item.level2 =='1' && item.level1 =='0'"><font color="red">Erro de Leitura no Sensor</td>
                 <td ng-if = "item.level4 =='1' && item.level3 =='0'"><font color="red">Erro de Leitura no Sensor</td>

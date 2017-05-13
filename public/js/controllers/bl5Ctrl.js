@@ -4,7 +4,7 @@ angular.module('App').controller('bl5Ctrl', function($scope,$resource){
         var blob = new Blob([document.getElementById('exportable').innerHTML], {
             type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
         });
-        saveAs(blob, "Relatorio_bloco5.xls");
+        saveAs(blob, "Relatorio_bloco5a.xls");
     };
 
 	$scope.items = [];
