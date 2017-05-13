@@ -5,7 +5,7 @@
         .module('App')
         .controller('loginCtrl', Controller);
  
-    function Controller($location, $rootScope, AuthenticationService) {
+    function Controller($location, $scope, $window, AuthenticationService) {
         var vm = this;
  
         vm.login = login;
@@ -16,11 +16,13 @@
                 if (result === true) {
 					console.log("passei aqui");
                     $location.path('/dash');
-						if (!$rootScope.$$phase) $rootScope.$apply();
-                } else {
+					$scope.$on('$locationChangeSuccess', function() {
+						$window.location.reload(true); 
+					});
+				} else {
                     vm.error = 'Email or password is incorrect';
                     vm.loading = false;
-                }
+                }	
             });
         };
     }

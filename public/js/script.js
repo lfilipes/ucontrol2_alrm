@@ -498,7 +498,7 @@ function config ($stateProvider,$urlRouterProvider,$locationProvider) {
  
         // redirect to login page if not logged in and trying to access a restricted page
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var publicPages = ['/login','/logout','/', '/register'];
+            var publicPages = ['/login','/logout','/'];
             var restrictedPage = publicPages.indexOf($location.path()) === -1;
             if (restrictedPage && !$localStorage.currentUser) {
                 $location.path('/');

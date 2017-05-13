@@ -8,15 +8,14 @@
     function Controller($location, $localStorage, AuthenticationService) {
         var vm = this;
  
- 
-        vm.register=register;
+//        vm.register=register;
 		
-		/*if ($localStorage.currentUser.email == 'admin@ucontrol.net.br' ) {
+		if ($localStorage.currentUser.email == 'admin@ucontrol.net.br' ) {
 			vm.register = register;
 		} else
 		{
 		console.log('voce não pode registrar');
-		}*/
+		}
 		
         function register() {
 
