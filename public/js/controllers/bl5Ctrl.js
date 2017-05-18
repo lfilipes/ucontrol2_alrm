@@ -9,7 +9,7 @@ angular.module('App').controller('bl5Ctrl', function($scope,$resource){
 
 	$scope.items = [];
 	
-	var apiData = $resource('/api/data/1/UCSReserv1/bl5');
+	var apiData = $resource('/api/data/1/UCSReserv1/bl5a');
 	function buscaData() {
 		apiData.query(
 			function(items) {		
