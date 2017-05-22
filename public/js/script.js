@@ -435,7 +435,7 @@ function config ($stateProvider,$urlRouterProvider,$locationProvider) {
                 controllerAs: 'vm'
             },
             'body': {
-                templateUrl: "partials/relbl5b.html",
+                templateUrl: "partials/relbl6a.html",
                 controller: 'bl6aCtrl'
             }
         }
@@ -468,6 +468,21 @@ function config ($stateProvider,$urlRouterProvider,$locationProvider) {
             'body': {
                 templateUrl: "partials/RadialGaugeDemo.html",
                 controller: 'RadialGaugeDemoCtrl'
+            }
+        }
+    })
+    .state('singlescreen', {
+        url: '/singlescreen',
+
+        views: {
+            'navbar': {
+                templateUrl: "partials/navbar.html",
+                controller: "navbarCtrl",
+                controllerAs: 'vm'
+            },
+            'body': {
+                templateUrl: "partials/singlescreen.html",
+                controller: 'waterGaugeCtrl'
             }
         }
     })

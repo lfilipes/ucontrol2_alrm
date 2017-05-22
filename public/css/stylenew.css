@@ -24,8 +24,8 @@
  */
 
 .chart-wrapper {
-  background: #fff;
-  border: 1px solid #e2e2e2;
+  background: #D5F0FD;
+  /*border: 0px solid #e2e2e2;*/
   border-radius: 3px;
   /*margin-bottom: 10px;*/
   align-content: all;
@@ -35,6 +35,7 @@
 
 .chart-wrapper .chart-title {
   border-bottom: 1px solid #d7d7d7;
+  background: #fff;
   color: white;
   font-size: 14px;
   font-weight: bold;
@@ -44,7 +45,7 @@
   background: #339AD2;
 }
 .chart-wrapper .eminstalacao {
-  border-bottom: 1px solid #d7d7d7;
+  /*border-bottom: 1px solid #d7d7d7;*/
   color: white;
   font-size: 14px;
   font-weight: bold;
@@ -54,7 +55,7 @@
   background: #339AD2;
 }
 .chart-wrapper .description {
-  border-bottom: 1px solid #d7d7d7;
+  /*border-bottom: 1px solid #d7d7d7;*/
   color: #666;
   font-size: 12px;
   font-weight: bold;
@@ -201,12 +202,17 @@ transform: translateX(-50%);
 }
 .newcontainer {
     display:flex;
+    background: #D5F0FD;
 }
 .sideleft {
     width: 50%
 }
+.treewaters {
+    width: 33.3%
+}
 .cisterna {
     width: 100%
+    background: #D5F0FD;
 }
 .mainpage {
     background: #D5F0FD; 
@@ -358,6 +364,21 @@ input[type='submit']:hover {
 }
 a {
     color: #FFFFFF;
+}
+ .button {
+    background-color: #e7e7e7; /* Green */
+    text-align: center;
+    color: #777;
+    display: inline-block;
+    font-size: 14px;
+    border: 10px;
+    /*margin: 4px 2px;*/
+    float:right;
+    margin-right:10px;
+    cursor:pointer;
+    border-radius: 15px;
+
+
 }
 
   .userDetailsAlertBox{

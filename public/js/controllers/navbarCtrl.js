@@ -121,7 +121,14 @@ angular
 		  link: "switch"
 		}]
 	  }*/
-
+	  {
+		name: "Monitoramento",
+		link: "#",
+		subtree: [{
+		  name: "Ampliar Tela",
+		  link: "singlescreen"
+		}]
+	}
 	
 	  ]
 	};
