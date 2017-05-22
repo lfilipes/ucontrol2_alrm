@@ -93,7 +93,7 @@ angular
 		  link: "relbl5b"
 		}, {
 		  name: "Bloco 6A",
-		  link: "relbl6b"
+		  link: "relbl6a"
 		}, {
 		  name: "Bloco 6B",
 		  link: "relbl6b"
