@@ -1,0 +1,38 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6"> 
+        
+		  </div>
+ 	
+	</div>
+</div>
+
+    <div id="exportable">
+	<table class="table table-bordered table-striped" id="data-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>IP</th>
+                <th>Status</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item1 in items1">
+                <td> {{item1.datetime}}</td>
+                <td>{{item1.ip}}</td> 
+           <tr ng-repeat="item in items">
+                <td>{{item.name}}</td>
+                <td>{{item.ip}}</td>
+                <td ng-if = "item.status == 'Up'"><img ng-src="./images/up.png"></td>
+                <td ng-if = "item.status == 'Down'"><img ng-src="./images/down.png"></td>
+                <td>{{item.datetime}}
+                <td></td>
+
+
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>

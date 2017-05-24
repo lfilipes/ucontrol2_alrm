@@ -486,6 +486,21 @@ function config ($stateProvider,$urlRouterProvider,$locationProvider) {
             }
         }
     })
+    .state('monitor', {
+        url: '/monitor',
+
+        views: {
+            'navbar': {
+                templateUrl: "partials/navbar.html",
+                controller: "navbarCtrl",
+                controllerAs: 'vm'
+            },
+            'body': {
+                templateUrl: "partials/monitor.html",
+                controller: 'monitorCtrl'
+            }
+        }
+    })
 
     /*.state('switch', {
         url: '/switch',

@@ -127,7 +127,11 @@ angular
 		subtree: [{
 		  name: "Ampliar Tela",
 		  link: "singlescreen"
-		}]
+		},{  
+			name: "Status da Rede",
+			link: "monitor"
+		}
+		]
 	}
 	
 	  ]

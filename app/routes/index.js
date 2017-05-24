@@ -12,6 +12,7 @@ var ctrlAuth = require('../controllers/authentication');
 var ctrlGourmet = require('../controllers/gourmetController');
 var ctrlReservoir = require('../controllers/reservoirController');
 var ctrlSwitch = require('../controllers/switchController');
+var ctrlMonitor = require('../controllers/monitorController');
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -41,6 +42,10 @@ router.get('/data/1/UCSReserv1/bl5a', ctrlReservoir.rd_data_R1bl5a); //Caixa D A
 router.get('/data/1/UCSReserv1/bl5b', ctrlReservoir.rd_data_R1bl5b); //Caixa D Agua Bloco 5b
 router.get('/data/1/UCSReserv1/bl6a', ctrlReservoir.rd_data_R1bl6a); //Caixa D Agua Bloco 6a
 router.get('/data/1/UCSReserv1/bl6b', ctrlReservoir.rd_data_R1bl6b); //Caixa D Agua Bloco 6b
+
+//Get and post para Monitoramento da Rede
+router.get('/data/monitor', ctrlMonitor.rd_data_monitor); //Get arquivo JSON com resultado dos pings
+router.post('/data/monitor', ctrlMonitor.wr_data_monitor); //Post arquivo JSON com resultado dos pings
 
 
 // reservoir Post
