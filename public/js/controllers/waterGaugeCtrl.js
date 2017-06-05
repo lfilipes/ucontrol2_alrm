@@ -13,13 +13,10 @@ queue()
 		d.datetime = dateFormat.parse(d.datetime);
 //		console.log(d.datetime);
 		if (d.level4 == 1) {
-			d.bomba = 100;
-			}
-
-		else if (d.level4 == 0) {
-			d.bomba = 0
-		}
-		if (d.level3 == 1) {
+			d.total = 4;
+            d.changecolor = "#E53A0F";
+			} 
+		else if (d.level3 == 1) {
 			d.total = 3;
             d.changecolor = "#E53A0F";
 			}
@@ -189,17 +186,6 @@ queue()
 		var lastVolR9 = 0;
 		var colorR9 =  "#E53A0F";
 	}
-	//status bomba
-	sensorDim.filterAll();
-	sensorDim.filter(function(d) {return d === 'UCSCistern1'});
-	blocoDim.filter(function(d) {return d == 2});
-	if (timeDim.top(1)[0] != null) {
-		var bomba = timeDim.top(1)[0].bomba;
-	}
-	else {
-		var bomba = 0;
-		
-	}
 
 
 // Configura gaugues
@@ -252,27 +238,8 @@ queue()
 //Não definidas
      var gauge4b = loadLiquidFillGauge("fillgauge4b", lastVolR7, config9); // caixa d agua bloco 4B
      var gauge5b = loadLiquidFillGauge("fillgauge5b", lastVolR8, config10); //caixa d agua bloco 5B
-     var gauge6b = loadLiquidFillGauge("fillgauge6b", lastVolR9, config11); //caixa d agua bloco 6B	
-     console.log("Fluxo de Agua" +bomba)
-	 var g4 = new JustGage({
-        id: 'waterflow',
-        value: 0,
-        min: 0,
-        max: 100,
-        symbol: '',
-        pointer: true,
-        pointerOptions: {
-          toplength: 8,
-          bottomlength: -20,
-          bottomwidth: 6,
-          color: '#8e8e93'
-        },
-        gaugeWidthScale: 0.1,
-        counter: true
-      });	
+     var gauge6b = loadLiquidFillGauge("fillgauge6b", lastVolR9, config11); //caixa d agua bloco 6B		
 };
-	
-
 
 });
 	

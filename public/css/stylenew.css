@@ -142,10 +142,6 @@ transform: translateX(-50%);
     fill: #FFFFFF;
     fill-opacity: 0.01;
 }
-.gauge {
-      align-content: center;
-      display: flex;
-    }
 
 .component {
     fill: #e1e1e1;
