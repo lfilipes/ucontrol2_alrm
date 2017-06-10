@@ -76,8 +76,7 @@ module.exports.wr_data = function(req, res,next) {
 } 
 
 module.exports.rd_data_latest = function(req, res,next) {
-//app.get('/api/data/1/latest', function(req, res, next) {
-        mongoose.model('Ws').find({$query:{}, $orderby: {"datetime": -1}, limit: 58 }, function (err, ws) {
+          mongoose.model('Ws').find({}).sort({ "datetime": -1}).limit(60).exec(function (err, ws) {
               if (err) {
                   return console.error(err);
               } else {
