@@ -481,7 +481,7 @@ function config ($stateProvider,$urlRouterProvider,$locationProvider) {
                 controllerAs: 'vm'
             },
             'body': {
-                templateUrl: "partials/singleScreen.html",
+                templateUrl: "partials/singlescreen.html",
                 controller: 'singleScreenCtrl',
 				controllerAs: 'vm'
             }
