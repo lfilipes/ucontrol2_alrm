@@ -481,8 +481,9 @@ function config ($stateProvider,$urlRouterProvider,$locationProvider) {
                 controllerAs: 'vm'
             },
             'body': {
-                templateUrl: "partials/singlescreen.html",
-                controller: 'waterGaugeCtrl'
+                templateUrl: "partials/singleScreen.html",
+                controller: 'singleScreenCtrl',
+				controllerAs: 'vm'
             }
         }
     })
@@ -518,6 +519,8 @@ function config ($stateProvider,$urlRouterProvider,$locationProvider) {
         }
     });
     */
+	
+	
 }   
 
     function run($rootScope, $http, $location, $localStorage) {
