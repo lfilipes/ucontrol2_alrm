@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>uControl - Patio Village</title>
+  <!-- CSS 
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+  -->
+  <link data-require="bootstrap-css@3.3.7" data-semver="3.3.6" rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="css/stylenew.css" />
+  <link rel="stylesheet" type="text/css" href="css/dc.css"/>
+  <link rel="stylesheet" type="text/css" href="css/ui-navbar.css" />
+   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+  <!--  
+  <link rel="stylesheet" type="text/css" href="css/leaflet.css"/>
+  <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    -->
+  <!-- JavaScript  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>   troquei por 1.12.4 abaixo
+  -->
+  
+  <!-- Favicon --> 
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-config" content="browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Instalado pelo Bower  --save --> 
+  <script src="vendor/jquery/dist/jquery.min.js"></script>
+  <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>    
+  <script data-require="angular.js@1.5.8" data-semver="1.5.8" src="vendor/angular/angular.js"></script>
+  <script data-require="angular-animate@1.5.8" data-semver="1.5.8" src="vendor/angular-animate/angular-animate.js"></script>
+    <!-- ui-bootstrap 2.5.0 --> 
+  <script src="vendor/angular-ui-bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+  <script data-require="ui-router@0.3.1" data-semver="0.3.1" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="vendor/angular-resource/angular-resource.js"></script>
+  <script src='vendor/d3/d3.js' type='text/javascript'></script>
+  <script src='vendor/crossfilter2/crossfilter.js' type='text/javascript'></script>
+  <script src='vendor/dcjs/dc.js' type='text/javascript'></script>
+  <script src="vendor/ui-navbar/release/js/ui-navbar.js"></script>
+  <script src="vendor/file-saver/FileSaver.js" type="text/javascript"></script>
+  <script src="vendor/ngStorage/ngStorage.min.js"></script>
+  <script src="vendor/angular-messages/angular-messages.min.js"></script>
+    <script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
+   <!-- Not in Bower --save --> 
+  <script src="js/skel.min.js"></script>
+  <script src="js/skel-panels.min.js"></script>
+  <script src='js/queue.js' type='text/javascript'></script>
+  <script src='js/ngRadialGauge.js' type='text/javascript'></script> 
+     <!-- Meus scripts --save --> 
+  <script src="js/script.js"></script>
+  <script src="js/controllers/relCtrl.js"></script>
+   <script src="js/controllers/cisternasCtrl.js"></script>
+   <script src="js/controllers/cisternasCtrl2.js"></script>
+   <script src="js/controllers/bl1Ctrl.js"></script> 
+   <script src="js/controllers/bl2Ctrl.js"></script>   
+   <script src="js/controllers/bl3Ctrl.js"></script>   
+   <script src="js/controllers/bl4aCtrl.js"></script> 
+   <script src="js/controllers/bl4bCtrl.js"></script> 
+   <script src="js/controllers/bl5Ctrl.js"></script>
+   <script src="js/controllers/bl5bCtrl.js"></script>
+   <script src="js/controllers/bl6aCtrl.js"></script> 
+   <script src="js/controllers/bl6bCtrl.js"></script>   
+  
+  <script src="js/controllers/switchCtrl.js"></script>  
+  <script src="js/controllers/cisternaDashCtrl_b2.js"></script>
+  <script src="js/controllers/cisternaDashCtrl_b5.js"></script>
+  <script src="js/controllers/caixaDashCtrl_b1.js"></script>
+  <script src="js/controllers/caixaDashCtrl_b2.js"></script>
+  <script src="js/controllers/caixaDashCtrl_b3.js"></script>
+  <script src="js/controllers/caixaDashCtrl_b4a.js"></script>
+  <script src="js/controllers/caixaDashCtrl_b4b.js"></script>
+  <script src="js/controllers/caixaDashCtrl_b5a.js"></script> 
+  <script src="js/controllers/caixaDashCtrl_b5b.js"></script> 
+  <script src="js/controllers/caixaDashCtrl_b6a.js"></script> 
+  <script src="js/controllers/caixaDashCtrl_b6b.js"></script> 
+  
+  <script src="js/controllers/RadialGaugeDemoCtrl.js"></script>
+  <script src="js/controllers/waterGaugeCtrl.js"></script>
+  <script src="js/waterGauge.js"></script>
+   <script src="js/auth.service.js"></script>
+  <script src="js/controllers/loginCtrl.js"></script>
+  <script src="js/controllers/registerCtrl.js"></script>
+  <script src="js/controllers/logoutCtrl.js"></script>
+  <script src="js/controllers/navbarCtrl.js"></script>
+  <script src="js/controllers/monitorCtrl.js"></script>
+  <script src="js/controllers/singleScreenCtrl.js"></script>
+
+	
+</head>
+<body>
+
+<div ui-view="navbar"></div>
+<div class="mainpage" ui-view="body"></div>
+
+</body>
