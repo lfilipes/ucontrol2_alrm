@@ -2,20 +2,31 @@ angular.module('App').controller('singleScreenCtrl', function($scope,$resource){
 	
 ///////////////////////////////////////////////////////////////////////////// Aqui começa o controlador de alertas
 
-	var vm = this;
+ function timeDiffSec( date1, date2 ) {
+  //Get 1 day in seconds
+  //var one_day_sec = 60*60*24;
+  // Convert both dates to seconds
+  var date1_sec = date1.getTime() / 1000 | 0 ;
+  var date2_sec = date2.getTime() / 1000 | 0 ;
+  // Calculate the difference in seconds
+  var difference_sec = date2_sec - date1_sec;
+  // Send back the difference
+  return difference_sec;
+}
 
+	var vm = this;
+	
+//////////////////////////////////////////////////////////////////////////// Alertas de reservatório ///////////////////////// 
         vm.alerts = [];
-        vm.addAlert = function(type, msg){
-            vm.alerts.push({
-                type : type,
-                msg : msg
-            })
-        }
-        
- //       vm.closeAlert = function(index) {
- //           vm.alerts.splice(index, 1);
- //       };
-			
+ 
+	function hideOk(){
+		vm.ok = {show:false, type: 'alert-success', msg: 'OK' };
+	};
+
+	function displayOk(){
+		vm.ok = {show:true, type: 'alert-success', msg: 'OK' };
+	};
+ 
 		vm.closeAlert = function (index) {
 			vm.alerts.splice(index, 1);
 			if ( vm.alerts.length == 0 ) {
@@ -30,16 +41,33 @@ angular.module('App').controller('singleScreenCtrl', function($scope,$resource){
 		})
 	};	
 		
-	function hideOk(){
-		vm.ok = {show:false, type: 'alert-success', msg: 'OK' };
+
+//////////////////////////////////////////////////////////////////////////// Alertas de comunicação ///////////////////////// 
+
+        vm.alertcoms = [];
+ 
+   function hideOkcom(){
+		vm.okcom = {show:false, type: 'alert-success', msg: 'OK' };
 	};
 
-	function displayOk(){
-		vm.ok = {show:true, type: 'alert-success', msg: 'OK' };
+	function displayOkcom(){
+		vm.okcom = {show:true, type: 'alert-success', msg: 'OK' };
 	};
+	
+		vm.closeAlertcom = function (index) {
+			vm.alertcoms.splice(index, 1);
+			if ( vm.alertcoms.length == 0 ) {
+				displayOkcom();
+			};
+		};
 
-	displayOk();
-
+    function displayAlertcom(aType,aMsg){
+		 vm.alertcoms.push({
+						type : aType,
+						msg : aMsg
+		})
+	};	
+		
 //////////////////////////////////////////////////////////////////////////////////////////////// Aqui termina o controlador de alertas	
 	
 queue()
@@ -47,13 +75,15 @@ queue()
    .await(displayTotals);
    
      function displayTotals(error, apiData){
-   //Start Transformations
+  
+    //Start Transformations
 	var dataSet = apiData;
+	
 	var dateFormat = d3.time.format("%m/%d/%Y %H:%M:%S");
 	
 	dataSet.forEach(function(d) {
 		d.datetime = dateFormat.parse(d.datetime);
-//		console.log(d.datetime);
+
 		if (d.level4 == 1) {
 			d.total = 4;
             d.changecolor = "#E53A0F";
@@ -80,11 +110,34 @@ queue()
 	var ndx = crossfilter(dataSet);
 	
     // Cria as dimensões de tempo e de sensorId
-	var timeDim = ndx.dimension(function(d) {return new Date(d.datetime).getTime() });
+//	var timeDim = ndx.dimension(function(d) {return new Date(d.datetime).getTime() });
+    var timeDim = ndx.dimension(function(d) {return new Date(d.datetime) });
 	var sensorDim = ndx.dimension(function(d) {return d.sensorid });
 	var blocoDim = ndx.dimension(function(d) {return d.blocoid });
+
+// Começa sem alarmes
+	displayOk();
+	displayOkcom();
 	
-	// ultima leitura Cisterna Bloco 2
+// verifica comunicação com os sensores
+var tNow = new Date();
+var tLastRead = timeDim.top(1)[0].datetime;
+
+console.log(tLastRead + ' --------tLastRead');
+console.log(tNow + ' --------tNow');
+
+
+if (timeDiffSec(tLastRead,tNow) >= 3601 ) {
+	hideOkcom();
+	displayAlertcom('alert-warning','Não há comunicação há uma hora' );
+} 
+
+if (timeDiffSec(tLastRead,tNow) >= 7201 ) {
+	hideOkcom();
+	displayAlertcom('alert-danger','Não há comunicação há duas horas' );
+}
+
+// ultima leitura Cisterna Bloco 2
 	sensorDim.filterAll();
 	sensorDim.filter(function(d) {return d === 'UCSCistern1'});
 	blocoDim.filter(function(d) {return d == 2});

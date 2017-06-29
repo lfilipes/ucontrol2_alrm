@@ -22,17 +22,20 @@ Aqui entra o Alarm Dashboard
 					<div class="col-xs-7"> <h3 class="text-primary" align="center">Alerta</h3></div>				
 				</div>
 				<div class="row">
-					<div class="col-xs-3"><h4> Nível de Reservatório</h4></div>
+					<div class="col-xs-3"><strong><h4> Nível de Reservatório</h4></strong></div>
 					<div class="col-xs-2"><div uib-alert ng-show="vm.ok.show" ng-class="vm.ok.type"><strong>{{vm.ok.msg}}</strong></div></div>	  
 					<div class="col-xs-7">
 							<div uib-alert ng-repeat="alert in vm.alerts" ng-class="alert.type" close="vm.closeAlert($index)"  >{{alert.msg}}</div>
-<!--							
-							<button ng-click="vm.addAlert('alert-warning','Warning Alert')" >Add Warning Alert</button>
-							 <button ng-click="vm.addAlert('alert-danger','Warning Alert')" >Add danger Alert</button>
-							 <button ng-click="vm.addAlert('alert-success','Warning Alert')" >Add Success Alert</button>			  
- -->	
 					 </div>				
 				</div>
+				<div class="row">
+					<div class="col-xs-3"><strong><h4> Sistema Off Line</h4></strong></div>
+					<div class="col-xs-2"><div uib-alert ng-show="vm.okcom.show" ng-class="vm.okcom.type"><strong>{{vm.okcom.msg}}</strong></div></div>	  
+					<div class="col-xs-7">
+							<div uib-alert ng-repeat="alertcom in vm.alertcoms" ng-class="alertcom.type" close="vm.closeAlertcom($index)"  >{{alertcom.msg}}</div>
+					 </div>				
+				</div>		  
+				  
 		  </div>
 		</div>	
 <!--					
