@@ -7,9 +7,9 @@ var mongoose = require('mongoose');
 var gracefulShutdown;
 
 //   Cuidado com o DB escolhido !
-var dbURI = 'mongodb://localhost/sensordb'; // DB local
+//var dbURI = 'mongodb://localhost/sensordb'; // DB local
 //var dbURI = 'mongodb://lfilipe.email:mlab123@ds137261.mlab.com:37261/mlabsensordb'; // DB de Produção
-//var dbURI = 'mongodb://lfilipes:mlab123@ds137261.mlab.com:37261/mlabsensordb';  //DB para Testes
+var dbURI = 'mongodb://lfilipes:mlab123@ds137261.mlab.com:37261/mlabsensordb';  //DB para Testes
 
 //if (process.env.NODE_ENV === 'production') {
 //  dbURI = process.env.MONGOLAB_URI;
