@@ -407,7 +407,12 @@ queue()
      var gauge4b = loadLiquidFillGauge("fillgauge4b", lastVolR7, config9); // caixa d agua bloco 4B
      var gauge5b = loadLiquidFillGauge("fillgauge5b", lastVolR8, config10); //caixa d agua bloco 5B
      var gauge6b = loadLiquidFillGauge("fillgauge6b", lastVolR9, config11); //caixa d agua bloco 6B		
-};
+
+// refresh alerts	 
+	 
+ $scope.$apply();
+ 
+	 };
 
 });
 	
