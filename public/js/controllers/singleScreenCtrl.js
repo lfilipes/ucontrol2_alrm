@@ -20,11 +20,11 @@ angular.module('App').controller('singleScreenCtrl', function($scope,$resource){
         vm.alerts = [];
  
 	function hideOk(){
-		vm.ok = {show:false, type: 'alert-success', msg: 'OK' };
+		vm.ok = {show:false, type: 'alert-success', msg: '0' };
 	};
 
 	function displayOk(){
-		vm.ok = {show:true, type: 'alert-success', msg: 'OK' };
+		vm.ok = {show:true, type: 'alert-success', msg: '0' };
 	};
  
 		vm.closeAlert = function (index) {
@@ -47,11 +47,11 @@ angular.module('App').controller('singleScreenCtrl', function($scope,$resource){
         vm.alertcoms = [];
  
    function hideOkcom(){
-		vm.okcom = {show:false, type: 'alert-success', msg: 'OK' };
+		vm.okcom = {show:false, type: 'alert-success', msg: '0' };
 	};
 
 	function displayOkcom(){
-		vm.okcom = {show:true, type: 'alert-success', msg: 'OK' };
+		vm.okcom = {show:true, type: 'alert-success', msg: '0' };
 	};
 	
 		vm.closeAlertcom = function (index) {
